@@ -12,9 +12,9 @@ This repository serves as a comprehensive digital footprint of my journey pursui
 
 The repository contains all my coursework and experimental code, categorized by discipline:
 
-```text
+
 📦 SoftwareEngineering_AcademicData
- ┣ 💻 Core Computer Science (核心专业课)
+ ┣ 💻 Core Computer Science 
  ┃ ┣ 📂 Clanguage/             # C Programming & Basics
  ┃ ┣ 📂 DataStructure/         # Data Structures & Algorithm Implementations
  ┃ ┣ 📂 DatabaseExperiment/    # Database Design & SQL
@@ -23,12 +23,12 @@ The repository contains all my coursework and experimental code, categorized by 
  ┃ ┣ 📂 DigitalCircuit/        # Digital Logic & Hardware Foundations
  ┃ ┗ 📂 Introduction2Computer/ # CS Fundamentals
  ┃
- ┣ 📐 Mathematics & Physics (数理基础)
+ ┣ 📐 Mathematics & Physics 
  ┃ ┣ 📂 HigherMathematics/     
  ┃ ┣ 📂 LinearAlgebra/         
  ┃ ┗ 📂 Physics/               
  ┃
- ┣ 📚 Advanced & General Studies (综合拓展)
+ ┣ 📚 Advanced & General Studies
  ┃ ┣ 📂 NTUResources/          # Special academic resources
  ┃ ┣ 📂 IndustrialDesign/      # UI/UX & Design Thinking
  ┃ ┗ 📂 ... (Others including Humanities & General Education)
