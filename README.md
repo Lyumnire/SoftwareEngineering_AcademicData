@@ -12,7 +12,7 @@ This repository serves as a comprehensive digital footprint of my journey pursui
 
 The repository contains all my coursework and experimental code, categorized by discipline:
 
-
+```
 📦 SoftwareEngineering_AcademicData
  ┣ 💻 Core Computer Science 
  ┃ ┣ 📂 Clanguage/             # C Programming & Basics
