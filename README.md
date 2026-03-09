@@ -38,7 +38,7 @@ While this repository focuses on my academic foundation, my true passion lies in
 
 Generative AI & LLMs: Experimenting with Hugging Face open-source models and GPT-SoVITS.
 
-On-Device ML & Mobile: As a Google Pixel 7 Pro user and Android customization enthusiast, I am highly interested in integrating Google's Gemini API into edge devices and web applications.
+On-Device ML & Mobile: As a Google Pixel user and Android customization enthusiast, I am highly interested in integrating Google's Gemini API into edge devices and web applications.
 
 👨‍💻 About the Author
 Lyumni | Software Engineering Undergraduate
