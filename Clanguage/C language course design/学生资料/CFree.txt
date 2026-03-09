@@ -1,0 +1,158 @@
+File
+    New            Ctrl+N
+    Open           Ctrl+O
+    Close           Alt+X
+    Close All
+    Close All Other Tabs
+    Save           Ctrl+S
+    Save As...
+    Save All Shift+Ctrl+N
+    Open With
+         Text Editor
+         Hex Editor
+    Export
+         to HTML
+         to RTF
+    Print          Ctrl+P
+    Print Preview
+    Print Configuration
+         Printer Setup...
+         Page Setup...
+    Recent Projects
+    Recent Files
+    Exit           Alt+F4
+Edit
+    Undo         Ctrl+Z
+    Redo   Shift+Ctrl+Z
+    Cut          Ctrl+X
+    Copy         Ctrl+C
+    Paste        Ctrl+V
+    Append to clipboard
+    Copy as HTML
+    Select All
+    Column Selection
+    Insert Code Template...
+    Insert File...
+    Convert Case
+         Convert to Lowercase
+         Convert to Uppercase
+    Comment/Uncomment
+         Block Comment
+         Block Uncomment
+         Line Comment
+         Line Uncomment
+Search
+    Find...
+    Find in Files...
+    Find Next
+    Find Previous
+    Replace...
+    Goto...
+    Goto Scope...
+    All Symbols...
+    Toggle Bookmark
+         Toggle Bookmark 0
+         Toggle Bookmark 1
+    Go to Bookmark
+         Goto Bookmark 0
+         Goto Bookmark 1
+    Clear All Bookmarks
+    Previous Cursor Position
+    Next Cursor Position
+View
+    File Tree Window
+    Directory Window
+    Symbol Window
+    Class Window
+    Message Window
+    Find in Files Result Window 1 
+    Find in Files Result Window 2
+    Find Symbol Result Window
+    Toolbars
+         Standard
+         Search
+         Execute
+         Help
+         File Tabs
+         Debug
+    Highlight As
+         C/C++
+         BAT
+         Ch
+         CSS
+         No Highlighting
+    ASCII Chart...
+    Full Screen
+Project
+    New...
+    Open...
+    Close
+    Save
+    Add Files to project...
+    Add Directory to project...
+    Add Existing Project...
+    Open Project Group...
+    Save Project Group
+    Close Project Group
+    Locate to Project Directory...
+    Settings...
+Build
+    Run
+    Stop
+    Compile
+    Make
+    Build
+    Clean
+    Batch Build
+    Debug/Release
+    Parameters...
+    Build Options...
+Debug
+    Start Debug
+    Stop Debugging
+    Step Into
+    Step Out
+    Step Over
+    Run to Cursor
+    Insert/Remove Breakpoint
+    Breakpoints...
+    Attach to Process...
+    Detach from Process...
+    Locals
+    Watch
+    Memory
+    Console
+    Call Stack
+Tools
+    Environment Options...
+    Editor Properties...
+    Code Parser
+         Pause Parse
+         Reparse
+         Clear All Symbols
+    Configure Tools...
+    Project Converter...
+    Command Prompt
+    Dialog Edit
+    Message Craker
+    C/C++  Code Formatter(AStyle)
+Window
+    Cascade
+    Horizontal Tile
+    Vertical Tile
+    Next Window
+    Previous Window
+    Close
+    Close All
+    Horizontal Split
+    Vertical Split
+    Previous File Tab
+    Next File Tab
+Help
+    C-Free Help...
+    Customize Help...
+    C-Free Online...
+    About C-Free...
+    Register...
+    C/C++ Library Reference
+    Search on MSDN

@@ -1,0 +1,684 @@
+程序设计题
+1.　设计程序：z=f(x,y)=10*cos(x-4)+5*sin(y-2)，若x,y取值为区间[0,10]的整数，找出使z取最小值的x1,y1，并将x1、y1以格式"%d,%d"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+    FILE *p;
+    int x,y,x1,y1; float z,z1;
+	x1=0; y1=0;
+	z1=10*cos(x1-4)+5*sin(y1-2);
+	for(x=0;x<=10;x++)
+		for(y=0;y<=10;y++){
+			z=10*cos(x-4)+5*sin(y-2);
+			if(z1>z){ x1=x; y1=y; z1=z; }
+		}
+	p=fopen("design.dat","w");
+	fprintf(p,"%d,%d",x1,y1);
+	fclose(p);
+}
+2.　设计程序：计算27的小于1.00001的2n次方根(27的2n-2次方根不小于1.00001)，将n以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; float x=27; int n=0;
+	p=fopen("design.dat","w");
+	do{
+		n++;
+	}while(pow(x,1.0/(2*n))>=1.00001 || pow(x,1.0/(2*n-2))<1.00001);
+	fprintf(p,"%d",n);
+	fclose(p);
+}
+3.　设计程序：计算多项式a0+a1*x+a2*x*x+a3*x*x*x+...的值，并将其值以格式"%f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; int i; float x=1.279,t=1,y=0;
+	float a[10]={1.1,3.2,-2.5,5.67,3.42,-4.5,2.54,5.6,0.97,4.65};
+	for(i=0;i<10;i++){
+		y+=a[i]*t;
+		t*=x;
+	}	
+	p=fopen("design.dat","w");
+	fprintf(p,"%f",y);
+	fclose(p);
+}
+4.　设计程序：在正整数中找出1个最小的、被3、5、7、9除，余数分别为1、3、5、7的数，将该数以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p;
+	int n=1;
+	while(n%3!=1 || n%5!=3 || n%7!=5 || n%9!=7) n++;
+	p=fopen("design.dat","w");
+	fprintf(p,"%d",n);
+	fclose(p);
+}
+5.　设计程序：在6至5000内找出所有的亲密数对，并将每对亲密数用fprintf(p,"%6d,%6d\n",a,b); 语句写到考生目录中Paper子目录下的新建文件design.dat中。 
+说明：若a、b为1对亲密数，则a的因子和等于b、b的因子和等于a、且a不等于b。如：220、284是1对亲密数，284、220也是1对亲密数。
+#include <stdio.h>
+void main()
+{
+	FILE *p; int a,b,c,k;
+	p=fopen("design.dat","w");
+	for(a=6;a<=5000;a++){
+		c=1;
+		for(k=2;k<a;k++) if(a%k==0) c+=k;
+		for(b=6;b<=5000;b++){
+			if(c==b && a!=b){
+				c=1;
+				for(k=2;k<b;k++) if(b%k==0) c+=k;
+				if(c==a) fprintf(p,"%6d,%6d\n",a,b);
+			}
+		}
+	}
+	fclose(p);
+}
+6.　设计程序：将字符串s中的所有字符按ASCII值从小到大重新排序后，将排序后的字符串写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <string.h>
+void main()
+{
+	FILE *p; char *s="634,.%@\\w|SQ2",c;
+	int i,j,k,n=strlen(s);
+	p=fopen("design.dat","w");
+	for(i=0;i<n-1;i++){
+		k=i;
+		for(j=i+1;j<n;j++) if(s[k]>s[j]) k=j;
+		if(k!=i){ c=s[i]; s[i]=s[k]; s[k]=c; }
+	}
+	for(i=0;i<n;i++) fputc(s[i],p);
+	fclose(p);
+}
+注意：在Turbo C下编译运行正确，在Visual C++6.0下编译运行有错，将指针s改为数组即可。
+7.　设计程序：a、b、c为区间[1,100]的整数，统计使等式c/(a*a+b*b)=1成立的所有解的个数，并将统计数以格式"%d"写入到考生目录中Paper子目录下的新建文件design.dat中，（若a=1、b=3、c=10是1个解，则a=3、b=1、c=10 也是解）。
+#include <stdio.h>
+void main()
+{
+	FILE *p; int n=0,a,b,c;
+	p=fopen("design.dat","w");
+	for(a=1;a<=100;a++)
+		for(b=1;b<=100;b++)
+			for(c=1;c<=100;c++)
+				if(c/(a*a+b*b)==1) n++;
+	fprintf(p,"%d",n);
+	fclose(p);
+}
+8.　设计程序：将满足条件pow(1.05,n)<1e6<pow(1.05,n+1)的n、pow(1.05,n)值以格式"%d,%.0f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	float y=1.05; int n=1;  FILE *p;
+	p=fopen("design.dat","w");
+	while(pow(1.05,n)>=1e6 || pow(1.05,n+1)<=1e6) n++;
+	fprintf(p,"%d,%.0f",n,pow(1.05,n));
+	fclose(p);
+}
+9.　设计程序：计算多项式a0+a1*sin(x)+a2*sin(x*x)+a3*sin(x*x*x)+……的值，并将其值以格式"%.6f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+	FILE *p;
+    int i; float x=2.345,t=1.0,y=0.0;
+    float a[10]={1.2,-1.4,-4.0,1.1,2.1,-1.1,3.0,-5.3,6.5,-0.9};
+	p=fopen("design.dat","w");
+	y=a[0];
+	for(i=1;i<10;i++){
+		t*=x;
+		y+=a[i]*sin(t);
+	}
+	fprintf(p,"%.6f",y);
+	fclose(p);
+}
+10.　设计程序：z=f(x,y)=(3.14*x-y)/(x+y)，若x、y取值为区间[1,6]的整数，找出使z取最小值的x1、y1，并将x1、y1以格式"%d,%d"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p; float f(float x,float y),min;
+	int x,y,x1,y1;
+	p=fopen("design.dat","w");
+	x1=1; y1=1;
+	min=f(x1,y1);
+	for(x=1;x<=6;x++)
+		for(y=1;y<=6;y++){
+			if(min>f(x,y)){ min=f(x,y); x1=x; y1=y; }
+		}
+	fprintf(p,"%d,%d",x1,y1);
+	fclose(p);
+}
+float f(float u,float v)
+{
+	return (3.14*u-v)/(u+v);
+}
+11.　设计程序：在6至10000内找出所有的完数，并顺序将每个完数用语句“fprintf(p,"%6d",n)”写入到考生目录中Paper子目录下的新建文件design.dat中。 
+说明：某数等于其诸因子之和则该数为完数，如6=1+2+3，28=1+2+4+7+14则6、28就是完数。
+#include <stdio.h>
+void main()
+{
+	FILE *p;  int n,i,s;
+	p=fopen("design.dat","w");
+	for(n=6;n<=10000;n++){
+		s=1;
+		for(i=2;i<n;i++) if(n%i==0) s+=i;
+		if(s==n) fprintf(p,"%6d",n);
+	}
+	fclose(p);
+}
+12.　设计程序：将数组a的每1行均除以该行上绝对值最大的元素，然后将a数组写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	float a[3][3]={{1.3,2.7,3.6},{2,3,4.7},{3,4,1.27}};
+	FILE *p; float x; int i,j;
+	for(i=0;i<3;i++){
+		x=a[i][0];
+		for(j=1;j<3;j++) if(fabs(x)<fabs(a[i][j])) x=a[i][j];
+		for(j=0;j<3;j++) a[i][j]/=x;
+	}
+	p=fopen("design.dat","w");
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++) fprintf(p,"%10.6f",a[i][j]);
+		fprintf(p,"\n");
+	}
+	fclose(p);
+}
+13.　设计程序：数组元素x[i]、y[i]表示平面上某点坐标，统计所有各点间最短距离，并将其值以格式"%f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+#define len(x1,y1,x2,y2) sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
+void main()
+{
+	FILE *p; int i,j; float c,minc;
+	float x[]={1.1,3.2,-2.5,5.67,3.42,-4.5,2.54,5.6,0.97,4.65};
+	float y[]={-6,4.3,4.5,3.67,2.42,2.54,5.6,-0.97,4.65,-3.33};
+	minc=len(x[0],y[0],x[1],y[1]);
+	p=fopen("design.dat","w");
+	for(i=0;i<sizeof(x)/sizeof(x[0])-1;i++)
+		for(j=i+1;j<sizeof(x)/sizeof(x[0]);j++){
+			c=len(x[i],y[i],x[j],y[j]);
+			if(minc>c) minc=c;
+		}
+	fprintf(p,"%f",minc);
+	fclose(p);
+}
+14.　设计程序：计算表达式1+2!+3!+...+12!的值，并将计算结果以格式"%ld"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p; long s=1,k=1; int i;
+	p=fopen("design.dat","w");
+	for(i=2;i<=12;i++){
+		k*=i;
+		s+=k;
+	}
+	fprintf(p,"%ld",s);
+	fclose(p);
+}
+15.　设计程序：寻找并输出11至999之间的数m，它满足m、m*m、m*m*m均为回文数。所谓回文数是指各位数字左右对称，例如121、676、94249等。满足上述条件的数如m=11,m^2=121,m^3=1331皆为回文数。请编制函数int JSValue(long m)实现此功能，如果是回文数，则函数返回1，反之则返回0。最后把结果输出到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int JSValue(long m)
+{
+	char s[15],n; int i;
+	ltoa(m,s,10); n=strlen(s);
+	for(i=0;i<n/2;i++) if(s[i]!=s[n-i-1]) return 0;
+	return 1;
+}
+void main()
+{
+    FILE *p;long m;
+    p=fopen("design.dat","w");
+    for(m=11;m<1000;m++)
+    {
+        if(JSValue(m)&&JSValue(m*m)&&JSValue(m*m*m))
+            fprintf(p,"%ld ",m);
+    }
+    fclose(p);
+}
+16.　设计程序：x[i],y[i]分别表示平面上1个点的x、y坐标，求下列5点各点间距离总和，并将该数以格式"%.4f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; float s,x[5]={-1.5,2.1,6.3,3.2,-0.7};
+	float y[5]={7,5.1,3.2,4.5,7.6}; int i,j;
+	p=fopen("design.dat","w");
+	s=0;
+	for(i=0;i<4;i++)
+		for(j=i+1;j<5;j++)
+			s+=sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j]));
+	fprintf(p,"%.4f",s);
+	fclose(p);
+}
+17.　设计程序：对x=1,2,...,10，求函数f(x)=x-10*cos(x)-5*sin(x)的最大值，并将该数以格式"%.3f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; float f(float),max,x;
+	p=fopen("design.dat","w");
+	max=f(1); x=2;
+	while(x<=10){
+		if(max<f(x)) max=f(x);
+		x++;
+	}
+	fprintf(p,"%.3f",max);
+	fclose(p);
+}
+float f(float x){ return x-10*cos(x)-5*sin(x); }
+18.　设计程序：累加a字符串中各个字符的ASCII码值，然后将累加和以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p; int s=0,i=0;
+	char *a="r235%^%34cdDW,.";
+	p=fopen("design.dat","w");
+	while(a[i]!='\0'){
+		s+=a[i];
+		i++;
+	}
+	fprintf(p,"%d",s);
+	fclose(p);
+}
+19.　设计程序：数组元素x[i]、y[i]表示平面上某点坐标，统计10个点中同处在圆 (x-1)*(x-1)+(y+0.5)*(y+0.5)=25与(x-0.5)*(x-0.5)+y*y=36内的点数k，并将变量k的值以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; int i,k=0;
+	float x[]={1.1,3.2,-2.5,5.67,3.42,-4.5,2.54,5.6,0.97,4.65};
+	float y[]={-6,4.3,4.5,3.67,2.42,2.54,5.6,-0.97,4.65,-3.33};
+	p=fopen("design.dat","w");
+	for(i=0;i<10;i++)
+		if(pow((x[i]-1),2)+pow((y[i]+0.5),2)<=25
+			&& pow((x[i]-0.5),2)+pow(y[i],2)<=36) k++;
+	fprintf(p,"%d",k);
+	fclose(p);
+}
+20.　设计程序：计算数列1,-1/3!,1/5!,-1/7!,1/9!,...的和至某项的绝对值小于1e-5时为止(该项不累加)，将求和的结果以格式"%.6"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; float s=1,t=1,i=3;
+	p=fopen("design.dat","w");
+	t=-t/((i-1)*i);
+	while(fabs(t)>=1e-5){
+		s+=t; i=i+2;
+		t=-t/((i-1)*i);
+	}
+	fprintf(p,"%.6f",s);
+	fclose(p);
+}
+21.　设计程序：计算多项式a0-a1*x+a2*x*x/2!-a3*x*x*x/3!+...的值，并将其以格式"%f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; int i; float x=1.279,t,y;
+	float a[10]={1.1,3.2,-2.5,5.67,3.42,-4.5,2.54,5.6,0.97,4.65};
+	p=fopen("design.dat","w");
+	t=1.0; y=a[0];
+	for(i=1;i<10;i++){
+		t=-t*x/i;
+		y+=a[i]*t;
+	}
+	fprintf(p,"%f",y);
+	fclose(p);
+}
+22.　设计程序：在数组x的10个数中求平均值v，找出与v相差最小的数组元素并将其以格式"%.5f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	 FILE *p; int i,k=0;
+	 float x[10]={7.23,-1.5,5.24,2.1,-12.45,6.3,-5,3.2,-0.7,9.81},d,v=0;
+	 for(i=0;i<10;i++) v+=x[i]; v=v/10; d=fabs(x[0]-v);
+	 p=fopen("design.dat","w");
+	 for(i=1;i<10;i++){
+		 if(d>fabs(x[i]-v)){
+			 d=fabs(x[i]-v);
+			 k=i;
+		 }
+	 }
+	 fprintf(p,"%.5f",x[k]);
+	 fclose(p);
+}
+23.　设计程序：计算2的平方根、3的平方根、...、10的平方根之和，要求计算结果具有小数点后10位有效位数，并以格式"%.10f\n"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p;
+	int i; double s=0.0;
+	p=fopen("design.dat","w");
+	for(i=2;i<=10;i++) s+=sqrt(i);
+	fprintf(p,"%.10f\n",s);
+	fclose(p);
+}
+24.　设计程序：统计满足条件x*x+y*y+z*z==2000的所有解的个数，并将统计结果以格式"%d"写入到考生目录中Paper子目录下的新建文件design.dat中。
+说明：若a、b、c是1个解，则a、c、b也是1个解，等等。
+#include <stdio.h>
+void main()
+{
+	FILE *p; int x,y,z,k=0;
+	p=fopen("design.dat","w");
+	for(x=-45;x<=45;x++)
+		for(y=-45;y<=45;y++)
+			for(z=-45;z<=45;z++) if(x*x+y*y+z*z==2000) k++;
+	fprintf(p,"%d",k);
+	fclose(p);
+}
+25.　设计程序：选出5000以下符合条件的自然数。条件是：千位数字与百位数字之和等于十位数字与个位数字之和，且千位数字与百位数字之和等于个位数字与千位数字之差的10倍。计算并输出这些四位自然数的个数cnt及这些数字的和sum到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+void main()
+{
+	FILE *p;
+    int cnt,sum;
+	int i,b1,b10,b100,b1000;
+	p=fopen("design.dat","w");
+	cnt=sum=0;
+	for(i=1000;i<5000;i++){
+		b1=i%10; b10=i/10%10; b100=i/100%10; b1000=i/1000;
+		if(b1000+b100==b10+b1 && b1000+b100==(b1-b1000)*10){
+			cnt++;
+			sum+=i;
+		}
+	}
+    fprintf(p,"%d,%d",cnt,sum);
+    fclose(p);
+}
+26.　设计程序：数列第1项为81，此后各项均为它前1项的正平方根，统计该数列前30项之和，并以格式"%.3f"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *p; float s=0,a=81,i;
+	p=fopen("design.dat","w");
+	i=1;
+	while(i<=30){
+		s+=a;
+		a=sqrt(a);
+		i++;
+	}
+	fprintf(p,"%.3f",s);
+	fclose(p);
+}
+27.　设计程序：将数组a的每1行均除以该行上的主对角元素（第1行同除以a[0][0]，第2行同除以a[1][1]，...），然后将a数组写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	float a[3][3]={{1.3,2.7,3.6},{2,3,4.7},{3,4,1.27}};
+	FILE *p;
+	int i,j; float t;
+	p=fopen("design.dat","w");
+	for(i=0;i<3;i++){
+		t=a[i][i];
+		for(j=0;j<3;j++) a[i][j]/=t;
+	}
+	for(i=0;i<3;i++){
+		for(j=0;j<3;j++) fprintf(p,"%10.6f",a[i][j]);
+		fprintf(p,"\n");
+	}
+	fclose(p);
+}
+28.　设计程序：计算字符串s中每个字符的权重值，所谓权重值就是字符在字符串中的位置值与该字符的ASCII码值的乘积。位置值从1开始依此递增。将每个字符的权重值，以格式"%d "写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+	FILE *p;  int i,w;
+    char *s="we45*&y3r#$1";
+	p=fopen("design.dat","w");
+	i=0;
+	while(s[i]!='\0'){
+		w=(i+1)*s[i];
+		fprintf(p,"%d ",w);
+		i++;
+	}
+	fclose(p);
+}
+29.　设计程序：求斐波那契(Fibonacci)数列中大于t的最小的一个数，结果由函数JSValue返回，其中斐波那契数列F(n)的定义为：F(0)=0，F(1)=1，F(n)=F(N-1)+F(n-2)。分别计算当t=1000和t=3000时的结果，将计算结果输出到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+int JSValue(int t)
+{
+	int a=0,b=1,temp;
+	while(a<=t){
+		temp=b;
+		b+=a;
+		a=temp;
+	}
+	return a;
+}
+void main()
+{
+    FILE *p;
+    p=fopen("design.dat","w");
+    fprintf(p,"%d,%d",JSValue(1000),JSValue(3000));
+    fclose(p);
+}
+30.　设计程序：数列各项为1,1,2,3,5,8,13,21,...，求其前40项之和，并将求和的结果以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p; long s=0,i,a[40];
+	p=fopen("design.dat","w");
+	a[0]=1; a[1]=1;
+	s+=a[0]+a[1];
+	for(i=2;i<40;i++){
+		a[i]=a[i-1]+a[i-2];
+		s+=a[i];
+	}
+	fprintf(p,"%d",s);
+	fclose(p);
+}
+31.　设计程序：x[i],y[i]分别表示平面上一个点的坐标，求下列10个点与点(1.0,1.0)的距离的总和，并将结果以格式"%.6f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+    FILE *p;
+    int i;
+    float x[10]={-1.5,2.1,6.3,3.2,-0.7,7.0,5.1,3.2,4.5,7.6};
+    float y[10]={3.5,7.6,8.1,4.5,6.0,1.1,1.2,2.1,3.3,4.4};
+    float s=0.0;
+	p=fopen("design.dat","w");
+	for(i=0;i<10;i++) s+=sqrt(pow((x[i]-1.0),2)+pow((y[i]-1.0),2));
+	fprintf(p,"%.6f",s);
+	fclose(p);
+}
+32.　设计程序：一个球从100米高度落下，每次落地后都反弹至原高度一半位置，再落下。计算出第10次落地时小球共经过的距离，并将结果以格式"%.0f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *fp;
+	float s=100,h=100;
+	int i;
+	fp=fopen("design.dat","w");
+	for(i=1;i<=9;i++){
+		s+=h;
+		h/=2;
+	}
+	fprintf(fp,"%.0f",s);
+	fclose(fp);
+}
+33.　设计程序：利用公式π/4≈1-1/3+1/5-1/7+……公式计算π的近似值，直到某一项的绝对值小于1e-6为止(π/4的结果不包含此项)。将结果以格式"%.6f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	FILE *fp;
+	float n=1,t=1,pi=0;
+	int i;
+	fp=fopen("design.dat","w");
+	i=1;
+	while(fabs(n)>=1e-6){
+		pi+=n; i+=2;
+		t=-t; n=t/i;
+	}
+	pi*=4;
+	fprintf(fp,"%.6f",pi);
+	fclose(fp);
+}
+34.　设计程序：某公司1999年年产量11.5万件，生产能力每年提高9.8%，求出产量能超过x万件的年份，结果由函数Year返回。计算当x=20和x=30时的结果，将计算结果输出到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+int Year(int x)
+{
+	int p=11.5,y=1999;
+	while(p<=x){
+		p=p*(1+0.098);
+		y++;
+	}
+	return y;
+}
+void main()
+{
+    FILE *p;
+    p=fopen("design.dat","w");
+    fprintf(p,"%d,%d",Year(20),Year(30));
+    fclose(p);
+}
+35.　设计程序：找出1000至9999之间符合条件的自然数。条件是：若一个四位数的千位数字上的值小于等于百位数字上的值，百位数字上的值小于等于十位数字上的值，以及十位数字上的值小于等于个位数字上的值，并且此四位数是偶数，统计出满足此条件的自然数的个数cnt，以格式"%d"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+void main()
+{
+    FILE *p;
+    int cnt=0;
+	int i,a,b,c,d;
+	p=fopen("design.dat","w");
+	for(i=1000;i<=9999;i++){
+		a=i/1000;
+		b=(i-a*1000)/100;
+		c=(i-a*1000-b*100)/10;
+		d=i%10;
+		if(a%2!=0 || b%2!=0 || c%2!=0 || d%2!=0) continue;
+		if(a<=b && b<=c && c<=d) cnt++;
+	}
+    fprintf(p,"%d",cnt);
+    fclose(p);
+}
+36.　设计程序：有数列：2/1,3/2,5/3,8/5,13/8,21/13,……求出数列的前40项的和。将结果以格式"%.6f"写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include<stdio.h>
+void main()
+{
+    FILE *p;
+    int i;
+    float f1=1.0,f2=2.0,t1=2.0,t2=3.0,s;
+    float f,t;
+    s=t1/f1+t2/f2;
+	p=fopen("design.dat","w");
+	for(i=3;i<=40;i++){
+		t=f2; f2=f1+f2;
+		f1=t;
+		t=t2; t2=t1+t2;
+		t1=t;
+		s=s+t2/f2;
+	}
+	fprintf(p,"%.6f",s);
+	fclose(p);
+}
+37.　设计程序：求解百鸡问题。
+已知公鸡每只5元、母鸡每只3元、小鸡1元3只。求出用100元买100只鸡的解。将得到的解按公鸡、母鸡和小鸡的只数以"%d,%d,%d\n"的格式写入到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p;
+	int cock,hen,chick;
+	p=fopen("design.dat","w");
+	for(cock=0;cock<=20;cock++)
+		for(hen=0;hen<=33;hen++)
+			for(chick=0;chick<=99;chick+=3)
+				if(cock*5+hen*3+chick/3==100 && cock+hen+chick==100)
+					fprintf(p,"%d,%d,%d\n",cock,hen,chick);
+	fclose(p);
+}
+38.　设计程序：求斐波那契(Fibonacci)数列中其前40项之和，其中斐波那契数列的定义为：后一项为前两项之和，并将求和的结果以格式"%d"写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p; long s=0,i,a[40];
+	p=fopen("design.dat","w");
+	a[0]=0; a[1]=1;
+	s=a[0]+a[1];
+	for(i=2;i<40;i++){
+		a[i]=a[i-1]+a[i-2];
+		s=s+a[i];
+	}
+	fprintf(p,"%d",s);
+	fclose(p);
+}
+39.　设计程序：在整数数组a中找出偶数放到b数组中，对b数组按从小到大的顺序进行排序后以格式"%3d"每行3个数写到考生目录中Paper子目录下的新建文件design.dat中。
+#include <stdio.h>
+void main()
+{
+	FILE *p;
+	int i,j,temp,n=0;
+	int a[10]={7,6,20,3,14,88,53,62,10,29},b[10];
+	p=fopen("design.dat","w");
+	for(i=0,j=0;i<10;i++) 
+		if(a[i]%2==0){
+			b[j]=a[i];
+			j++;
+			n++;
+		}
+	for(i=0;i<n-1;i++)
+		for(j=0;j<n-1;j++)
+			if(b[j]>b[j+1]){
+				temp=b[j];
+				b[j]=b[j+1];
+				b[j+1]=temp;
+			}
+	for(j=0;j<n;j++){
+		if(j%3==0) fprintf(p,"\n");
+		fprintf(p,"%3d",b[j]);
+	}
+	fclose(p);
+}
+40. 计算500到800区间内素数的个数cnt和素数和sum。请编写函数JSValue()实现程序的要求，最后cnt 和sum 和值写入到考生文件夹中Paper子文件夹的新建文件design1.dat
+#include<stdio.h>
+int cnt,sum;
+void JSValue()
+{
+    int i,j,half;
+for(i=500;i<=800;i++)
+ {half=i/2; 
+for(j=2;j<half;j++) 
+if(i%j= =0)  break; 
+if(j= = half) {cnt++;sum+=i;} }
+
+}
+void main()
+{
+    FILE *p;
+    p=fopen("design.dat","w");
+    JSValue();
+    fprintf(p,"%d,%d",cnt,sum);
+    fclose(p);
+}
+41. 
+数组元素x[i]、y[i]表示平面上某点坐标，统计10个点中处在圆（方程为(x-1)*(x-1)+(y+0.5)*(y+0.5)=25）内的点数k，并将变量k的值以格式”%d”写入到考生文件夹中Paper子文件夹下的新建文件Design1.dat
+#include <stdio.h>
+#include <math.h>
+void main()
+{ FILE *p; int i,k=0;
+  float x[]={1.1,3.2,-2.5,5.67,3.42,-4.5,2.54,5.6,0.97,4.65};
+  float y[]={-6,4.3,4.5,3.67,2.42,2.54,5.6,-0.97,4.65,-3.33};
+  p=fopen("design1.dat","w");
+	for(i=0;i<10;i++)
+		if(pow((x[i]-1),2)+pow((y[i]+0.5),2)<=25
+			k++;
+	fprintf(p,"%d",k);
+	fclose(p);
+}
+
+
+
+
+

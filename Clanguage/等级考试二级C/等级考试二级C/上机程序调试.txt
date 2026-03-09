@@ -1,0 +1,694 @@
+程序调试题
+1.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：运行时输入n，输出n的所有质数因子（如n=13860，则输出2、2、3、3、5、7、11）。
+#include <stdio.h>
+void main()
+{
+	int n,i; scanf("%d",&n);
+    /****** 1 ******/
+    i=1;
+    while(n>1)
+    	if(n%i==0) { printf("%d\t",i); n/=i; }
+    	else
+        	/******** 2 *******/
+        	n--;
+}
+2.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入的一个小写字母，将字母循环后移5个位置后输出，如‘a’变成‘f’，‘w’变成‘b’。
+#include <stdio.h>
+void main()
+{
+    char c; c=getchar();
+    if(______1______) c=c+5;
+    else if (c>='v' && c<='z') ______2______
+    putchar(c);
+}
+3.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f用以求1元2次方程 x*x+5*x-2=0 的实根。
+#include <stdio.h>
+#include <math.h>
+int f(float a,float b,float c,float *x1,float *x2)
+{
+	if(b*b-4*a*c<0) return 1;
+	*x1=(-b+sqrt(b*b-4*a*c))/2/a;
+	*x2=(-b-sqrt(b*b-4*a*c))/2/a;
+	______1______
+}
+void main()
+{
+	float u1,u2; float a=1,b=5,c=-2;
+	if( ________2_________ ) printf("实数范围内无解\n");
+	else printf("%.2f    %.2f\n",u1,u2);
+}
+4.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f计算代数多项式1.1+2.2*x+3.3*x*x+4.4*x*x*x+5.5*x*x*x*x，当x=1.7时的值。
+#include <stdio.h>
+float f(float,float*,int);
+void main()
+{
+	float b[5]={1.1,2.2,3.3,4.4,5.5};
+	printf("%f\n",f(1.7,b,5));
+}
+float f( _______1________ )
+{
+	float y=a[0],t=1; int i;
+	for(i=1;i<n;i++) {  t=t*x; y=y+a[i]*t; }
+	_____2_____
+}
+5.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：运行时输入n，输出n各位数字之和（如n=1308则输出12，n=-3204则输出9）。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	int n,s=0; scanf("%d",&n); n=fabs(n);
+    /******** 1 *******/
+    while(n>1){
+        s=s+n%10;
+        /******** 2 ******/
+        n=n%10;
+    }
+    printf("%d\n",s);
+}
+6.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：分别统计字符串中所有英文字母中的各元音字母个数。
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	char a[80]; int n[5]={0},i; gets(a);
+	for(i=0; a[i]!='\0'; i++)
+		/***** 1 *****/
+		switch(toupper(a[i]))
+		{
+			case 'a': n[0]++; break;
+			case 'e': n[1]++; break;
+			case 'i': n[2]++; break;
+			case 'o': n[3]++; break;
+			/***** 2 *****/
+			case 'U': n[4]++;
+		}
+	for(i=0;i<5;i++) printf("%d\n",n[i]);
+}
+7.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f，将1个整数首尾倒置，若程序输入12345，则输出54321；若程序输入-34567，则输出-76543。
+#include <stdio.h>
+#include <math.h>
+long f(long n)
+{
+	long m,y=0; m=fabs(n);
+	while(m!=0){
+		y=y*10+m%10;
+		____1____
+	}
+	if(n>=0) return y;
+	else _____2_____
+}
+void main(){ printf("%ld\t",f(12345)); printf("%ld\n",f(-34567)); }
+8.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入整数n（n>0），求m使得 2的m次方小于或等于n、2的m+1次方大于或等于n。
+#include <stdio.h>
+void main()
+{
+	int m=0,t=1,n;
+    while( _____ 1 ________);
+    while(!(t<=n&&t*2>=n)){
+        _____ 2 _____
+        m++;
+    }
+    printf("%d\n",m);
+}
+9.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：运行时若输入a、n分别为3、6，则输出下列表达式的值：
+3+33+333+3333+33333+333333
+#include<stdio.h>
+void main()
+{
+	int i,a,n; long t=0;
+    /********* 1 *******/
+    s=0;
+    scanf("%d%d",&a,&n);
+    for(i=1;i<=n;i++){
+		/******* 2 ******/
+		t=t*10+i;
+		s=s+t;
+    }
+    s=s*a;
+    printf("%ld\n",s);
+}
+10.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+ 该程序功能：函数f将数组循环左移k个元素，数组x[7]调用函数f后的输出结果为：4  5  6  7  1  2  3
+#include <stdio.h>
+void f(int *a,int n,int k)
+{
+	int i,j,t;
+	for(i=0;i<k;i++){
+		___1___;
+		for( _______2________ ) a[j-1]=a[j];
+		a[n-1]=t;
+	}
+}
+void main()
+{
+	int i,x[7]={1,2,3,4,5,6,7};
+	f(x,7,3); 
+	for(i=0;i<7;i++) printf("%5d",x[i]);
+	printf("\n");
+}
+11.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：数列的第1、2项均为1，此后各项值均为该项前二项之和。计算数列第30项的值。
+#include <stdio.h>
+_______1______
+void main(){ printf("%ld\n",f(30)); }
+long f(int n)
+{
+    if( ______2______ ) return 1;
+    else return f(n-1)+f(n-2);
+}
+12.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入m、n（要求输入数均大于0），输出它们的最大公约数。
+#include <stdio.h>
+void main()
+{
+	int m,n,k;
+    while(scanf("%d%d",&m,&n), _______1______ );
+    for( ____2____; n%k!=0||m%k!=0; k--);
+    printf("%d\n",k);
+}
+13.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输出6～1000之间的完数（1个数的因子和等于其自身的数：6=1+2+3、28=1+2+4+7+14，则6、28都是完数）。
+#include <stdio.h>
+void main()
+{
+	int i,j,s;
+    for(i=6;i<=1000;i++){
+        _____1_____
+        for(j=2;____2_____;j++) if(i%j==0) s+=j;
+        if(s==i) printf("%d\n",s);
+    }
+}
+14.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入1个整数后，输出该数的位数（若输入3214则输出4，输入-23156则输出5）。
+#include <stdio.h>
+void main()
+{
+	int n,k=0; scanf("%d",&n);
+    while( _____1_____ ){
+        k++;
+        _____2_____;
+    }
+    printf("%d\n",k);
+}
+15.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入m、n（要求输入数均大于0,且m>=n），输出它们的最小公倍数。
+#include <stdio.h>
+void main()
+{
+	int m,n,k;
+    /******** 1 *********/
+    while(scanf("%d%d",&m,&n),m<0 && n<0);
+    for(k=m; k%n!=0;)
+    /******** 2 ********/
+    k=k+n;
+    printf("%d\n",k);
+}
+16.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f，将字符串中的所有字符逆序存放，然后输出。例如，输入字符串为"123456"，则程序的输出结果为"654321"。
+#include <stdio.h>
+#include <string.h>
+void main(){ char s[60],*f(char*); gets(s); printf("%s\n",f(s)); }
+___1__  f(char* x)
+{
+	char t; int i,n;
+    _______2______
+    for(i=0;i<n/2;i++){ t=x[i]; x[i]=x[n-1-i]; x[n-1-i]=t; }
+    return x;
+}
+17.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入n以及小于n个字符的字符串，将字符串中所有小写字母改为相应的大写字母后，输出该字符串。
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+void main()
+{
+	int n,i;
+	/***** 1 *****/
+	char str;
+	scanf("%d\n",&n);  str=(char*)malloc(n); gets(str);
+	/***** 2 *****/
+	for(i=1;i<strlen(str);i++)
+		if(str[i]>='a'&& str[i]<='z') str[i]=str[i]-('a'-'A');
+	puts(str);
+}
+18.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f，求a数组中最大值与b 数组中最小值之差。
+#include <stdio.h>
+enum FLAG {positive=1,negative=-1};
+float f(float *x,int n,enum FLAG flag)
+{
+	float y; int i;
+	___注意1____
+	for(i=1;i<n;i++) if(flag*x[i]>flag*y) y=x[i];
+	return y;
+}
+void main()
+{
+	float a[6]={3,5,9,4,2.5,1},b[5]={3,-2,6,9,1};
+	printf("%.2f\n",f(a,6,positive)- ____2_____ );
+}
+19.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：对x=1,2,...,10，求f(x)=x*x-5*x+sin(x)的最大值。
+#include <stdio.h>
+#include <math.h>
+#define f(x) x*x-5*x+sin(x)
+void main()
+{
+	int x; float max;
+    ______1______
+    for(x=2;x<=10;x++) ______2______
+    printf("%f\n",max);
+}
+20.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入n，再输入n个点的平面坐标，然后输出那些距离坐标原点不超过5的点的坐标值。
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+void main()
+{
+	int i,n;
+	/***** 1 *****/
+	struct axy { float x,y; } a;
+	scanf("%d",&n);
+	a=(float*) malloc(n*2*sizeof(float));
+	for(i=0;i<n;i++)
+		/***** 2 *****/
+		scanf("%f%f",a[i].x,a[i].y);
+	for(i=0;i<n;i++)
+		if(sqrt(a[i].x*a[i].x+a[i].y*a[i].y)<=5)
+			printf("%f,%f\n",a[i].x,a[i].y);
+}
+21.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入1个字符串，按字母出现次序输出其中所出现过的大写英文字母。如运行时输入字符串"FONTNAME and FILENAME"，应输出"F O N T A M E I L"。
+#include <stdio.h>
+void main()
+{
+	char x[80],y[26]; int i,j,ny=0; gets(x);
+	for(i=0;x[i]!='\0';i++)
+		if(x[i]>='A' && x[i]<='Z'){
+			for(j=0;j<ny;j++)
+				/***** 1 *****/
+				if(y[i]==x[j]) continue;
+			if(j==ny) { y[ny]=x[i]; ny++; }
+		}
+	/***** 2 *****/
+	for(i=0;i<26;i++) printf("%c ",y[i]);
+    printf("\n");
+}
+22.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：求输入的整数各位数字之和，如输入234则输出9，输入-312则输出6。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	int n,s=0;	scanf("%d",&n);
+	______ 1 ______
+	while(n!=0){
+		______ 2 ______
+		n=n/10;
+	}
+	printf("%d\n",s);
+}
+23.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：运行时输入10个数，然后分别输出其中的最大值、最小值。
+#include <stdio.h>
+void main()
+{
+	float x,max,min;  int i;
+    /******** 1 *******/
+    for(i=0;i<=10;i++){
+		scanf("%f",&x);
+        /******* 2 ********/
+        if(i=1) { max=x;min=x;}
+        if(x>max) max=x;
+        if(x<min) min=x;
+    }
+    printf("%f,%f\n",max,min);
+}
+24.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入x和正数eps，计算多项式1-x+x*x/2!-x*x*x/3!+...的和直到末项的绝对值小于eps为止。
+#include <stdio.h>
+#include <math.h>
+void main()
+{
+	float x,eps,s=1,t=1,i=1;
+	scanf("%f%f",&x,&eps);
+	do{
+		/***** 1 *****/
+		t=-t*x/++i;
+		s+=t;
+	/***** 2 *****/
+	}while(fabs(t)>=eps)
+	printf("%f\n",s);
+}
+25.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f，求二维数组a中全体元素之和。
+#include <stdio.h>
+float f( _______1_______ )
+{
+	float y=0; int i,j;
+	for(i=0;i<m;i++)
+		for(j=0;j<n;j++) y=y+*(*(x+i)+j);
+	return y;
+}
+void main()
+{
+	float a[3][4]={{1,2,3,4},{5,6,7,8},{9,10,11,12}},*b[3];
+	int i;
+	for(i=0;i<3;i++) b[i]=___2___;
+	printf("%.2f\n",f(b,3,4));
+}
+26.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入三个整数，按由小到大的顺序输出这三个数。
+#include <stdio.h>
+void swap(______1______)
+{ /*交换两个数的位置*/
+	int temp;
+    temp = *pa; *pa = *pb; *pb = temp;
+}
+void main()
+{
+    int a,b,c,temp;
+    scanf("%d%d%d",&a,&b,&c);
+    if(a>b) swap(&a,&b);
+    if(b>c) swap(&b,&c);
+    if(______2______) swap(&a,&b);
+    printf("%d,%d,%d",a,b,c);
+}
+27.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用函数f，从字符串中删除所有的数字字符。
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+void f(char *s)
+{
+	int i=0;
+	while(s[i]!='\0')
+		if(isdigit(s[i])) ____1____(s+i,s+i+1);
+	       2_  i++;
+}
+void main(){ char str[80]; gets(str); f(str); puts(str); }
+28.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：将输入的十进制正整数n通过函数Dec2Bin转换为二进制数，并将转换结果输出。
+#include <stdio.h>
+void Dec2Bin(int m)
+{
+    int bin[32],j;
+    for(j=0;m!=0;j++)
+    {
+        bin[j]= ______1______;
+        m=m/2;
+    }
+    for(;j!=0;j--) printf("%d", ______2______ );
+}
+void main(){ int n; scanf("%d",&n); Dec2Bin(n); }
+29.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：将两个字符串连接起来。
+#include <stdio.h>
+void main()
+{
+    char s1[80],s2[40];
+    int i=0,j=0;
+    printf("\nInput the first string:"); scanf("%s",s1);
+    printf("\nInput the second string:"); scanf("%s",s2);
+    while (s1[i] !='\0')
+    /****** 1 ******/
+        i+1;
+    while (s2[j] !='\0')
+    /****** 2 ******/
+        s1[++i]=s2[++j];           /* 拼接字符到s1  */
+    s1[i] ='\0';
+    printf("\nNew string: %s",s1);
+}
+30.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：将输入的十进制整数n通过函数DtoH转换为十六进制数，并将转换结果以字符串形式输出。例如：输入十进制数79，将输出十六进制4f。
+# include <stdio.h>
+# include <string.h>
+char trans(int x)
+{
+	if(x<10) return '0'+x;
+	else _______1________
+}
+int DtoH(int n,char *str)
+{
+	int i=0;
+	while(n!=0){
+		________2________
+		n/=16;i++;
+	}
+	return i-1;
+}
+void main()
+{
+	int i,k,n; char *str; scanf("%d",&n);
+	k=DtoH(n,str);
+	for (i=0;i<=k;i++) printf("%c",str[k-i]);
+}
+31.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：用递归法将一个六位整数n转换成字符串，例如输入123456，应输出字符串"123456"。
+#include<stdio.h>
+void itoa(long i,char *s)
+{
+    if(i==0) return;
+    /****** 1 ******/
+    *s='1'+i%10;
+    itoa(i/10,s-1);
+}
+void main()
+{
+    long n; char str[7]=""; scanf("%ld",&n);
+    /****** 2 ******/
+    itoa(n,str+6);
+    printf("%s",str);
+}
+32.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：将一个char型数的高4位和低4位分离，分别输出，如22(二进制:00010110)输出为1和6。
+#include <stdio.h>
+void main()
+{
+    char a,b1,b2,c; scanf("%d",&a);
+    /****** 1 ******/
+    b1=a<<4;          /*b1存放高4位*/
+    c=~(~0<<4);
+    /****** 2 ******/
+    b2=a|c;          /*b2存放低4位*/
+    printf("%d,%d",b1,b2);
+}
+33.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：调用find函数在输入的字符串中查找是否出现"the"这个单词。如果查到返回出现的次数；如果未找到返回0。
+#include <stdio.h>
+int find(char *str)
+{
+	char *fstr="the"; int i=0,j,n=0;
+	while (str[i]!='\0'){
+		for(______1______)
+			if (str[j+i]!=fstr[j]) break;
+		if(______2______) n++;
+		i++;
+	}
+	return n;
+}
+void main(){ char a[80]; gets(a); printf("%d",find(a)); }
+34.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“***** N *****”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入一个字符串，将组成字符串的所有非英文字母的字符删除后输出。例如：输入"abc123+xyz.5"，应输出"abcxyz"。
+#include <stdio.h>
+#include <string.h>
+void main()
+{
+	char str[256]; int i,j,k=0,n;
+	gets(str); n=strlen(str);
+	for(i=0;i<n;i++)
+		/********1********/
+		if (tolower(str[i])<'a' || tolower(str[i])>'z'){
+			/********2********/
+			str[n]=str[i]; n++;
+		}
+	str[k]='\0';
+	printf("%s\n",str);
+}
+35.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“***** N *****”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入一个字符串，将组成字符串的所有字符先按顺序存放到字符串t中，再将字符串中的字符按逆序连接到字符串t后面。例如：输入"ABCD"，则字符串t为"ABCDDCBA"。
+# include <stdio.h>
+# include <string.h>
+void fun(char *s,char *t)
+{
+	int i,sl; sl=strlen(s);
+	for(i=0;i<sl;i++) t[i]=s[i];
+	for(i=0;i<sl;i++)
+		/********1********/
+		t[sl+i]=s[sl-i];
+	/********2********/
+	t[sl]="\0";
+}
+void main(){ char s[100],t[100]; scanf("%s",s); fun(s,t); printf("%s",t); }
+36.　在考生目录的Paper子目录下，有Modify.c文件，该文件中“/***** N ***** /”的下一行中有错误，请改正（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：用选择法对10个整数按升序排序。
+#include <stdio.h>
+#define N 10
+void main()
+{
+	int  i,j,min,temp; int a[N]={5,4,3,2,1,9,8,7,6,0};
+    printf("\nThe array is:\n");   /* 输出数组元素 */
+    for (i=0;i<N;i++) printf("%5d",a[i]);
+    for (i=0;i<N-1;i++){           /* 排序操作 */
+        min=i;
+        for (j=i+1;j<N;j++)
+            /****** 1 ******/
+            if(a[min]<=a[j]) min=j;
+        /****** 2 ******/
+        temp=a[min]; a[min]=a[j]; a[j]=temp;    /* 数据交换 */
+    }
+    printf("\nThe sorted numbers: \n");  /* 输出排序结果 */
+    for (i=0;i<N;i++) printf("%5d",a[i]);
+    printf("\n");
+}
+37.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：该程序计算四位学生的平均成绩，保存在结构中，然后列表输出这些学生的信息。
+#include <stdio.h>
+struct STUDENT{ char name[16]; int math; int english; int computer; int average; };
+void GetAverage(struct STUDENT *pst)    /* 计算平均成绩 */
+{
+    int sum=0;
+    sum = ______1______;
+    pst->average = sum/3;
+}
+void main()
+{
+    int i;
+    struct STUDENT st[4]={{"Jessica",98,95,90},{"Mike",80,80,90},
+		                 {"Linda",87,76,70},{"Peter",90,100,99}};
+    for(i=0;i<4;i++)
+    {
+        GetAverage(______2______);
+    }
+    printf("Name\tMath\tEnglish\tCompu\tAverage\n");
+    for(i=0;i<4;i++)
+    {
+        printf("%s\t%d\t%d\t%d\t%d\n",st[i].name,st[i].math,st[i].english,
+                                    st[i].computer,st[i].average);
+    }
+}
+38. 在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：输入数组x[7]，调用函数f，去除数组中的负数，输出结果为：1  3   4   6
+#include <stdio.h>
+void f(int *a,int *m)
+{
+	int i,j;
+	for(i=0;i<*m;i++)
+		if(a[i]<0){
+			for(j=i--;j<*m-1;j++) a[j]=a[j+1];
+			_____1_____;
+		}
+}
+void main()
+{
+	int i,n=7,x[7]={1,-2,3,4,-5,6,-7};
+	_______2_______;
+	for(i=0;i<n;i++) printf("%5d",x[i]);
+	printf("\n");
+}
+39.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：找出100~999之间所有的Armstrong数。所谓Armstrong数是指这个3位数各位上数字的立方和等于自身。例如：371=3*3*3+7*7*7+1*1*1，那么371就是Armstrong数。
+#include <stdio.h>
+#include<math.h>
+void main()
+{
+	int i,a,b,c;
+	for(i=100;i<=999;i++){
+		a=i/100;
+		_______1_______
+		c=i%10;
+		if(_______2_______) printf("%d is a Armstrong number!\n",i);
+	}
+}
+40. 在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：将字符串s中所有的字符'c'删除。
+#include <stdio.h>
+void main()
+{
+    char s[80]; int i,j;
+    gets(s);
+    for(i=j=0;______1______;i++)
+        if(s[i] != 'c')
+        {
+            s[j]=s[i];
+            ______2______
+        }
+     s[j]='\0';
+     puts(s);
+}
+41.　在考生目录的Paper子目录下，有Modify.c文件，该文件中"____ N ____"是根据程序功能需要填充部分，请完成程序填充（注意：不得加行、减行、加句、减句，否则后果自负）。
+该程序功能：分别统计字符串中英文字母、数字和其他字符出现的次数。
+#include <stdio.h>
+#include <ctype.h>
+void main()
+{
+	char a[80]; int n[3]={0},i;
+	gets(a);
+	________1________
+	{
+		if(tolower(a[i])>='a' && tolower(a[i])<='z') /*统计字母个数*/
+			n[0]++;
+		else if(________2________)  /*统计数字个数*/
+			n[1]++;
+		else
+			n[2]++;
+    }
+	for(i=0;i<3;i++) printf("%d\n",n[i]);
+}
+
+
+ 
+
+答案：
+1.　　i=2;　　 　i++;　
+2.　　c<'v'　　　c=c-'v'+'a';　
+3.　　return 0;　　　f(a,b,c,&u1,&u2)　
+4.　　float x,float a[],int n　　　return y;　
+5.　　while(n!=0)　　　n=n/10;　
+6.　　switch(tolower(a[i]))　　　case 'u': n[4]++;　
+7.　　m=m/10;　　　return -y;　
+8.　　!scanf("%d",&n)　　　t=t*2;　
+9.　　long s=0;　　　t=t*10+1;　
+10.　　t=a[0]　　　j=1;j<n;j++　
+11.　　long f(int);　　　n<=2　
+12.　　m<=0 || n<=0　　　k=m<n?m:n　
+13.　　s=1;　　　j<i　
+14.　　n!=0　　　n=n/10　
+15.　　while(scanf("%d%d",&m,&n),m<=0 || n<=0 || m<n);　　　k=k+m;　
+16.　　char*　　　n=strlen(x);　
+17.　　char* str;　　　for(i=0;i<strlen(str);i++)　
+18.　　y=x[0];　　　f(b,5,negative)　
+19.　　max=f(1);　　　if(max<f(x)) max=f(x);　
+20.　　struct axy { float x,y; } *a;　　　scanf("%f%f",&a[i].x,&a[i].y);　
+21.　　if(y[j]==x[i]) break;　　for(i=0;　i<ny　;i++) printf("%c ",y[i]);
+22.　　n=abs(n);　　　s=s+n%10;　
+23.　　for(i=1;i<=10;i++){　　　if(i==1) { max=x;min=x;}　
+24.　　t=-t*x/i++;　　　}while(fabs(t)>=eps);　
+25.　　float *x[],int m,int n　　　a[i]　
+26.　　int* pa,int* pb　　　a>b　
+27.　　strcpy　　　else　
+28.　　m%2　　　bin[j-1]　
+29.　　i++;　　　s1[i++]=s2[j++];　
+30.　　return 'a'+x-10;　　　*str++=trans(n%16);　
+31.　　*s='0'+i%10;　　　itoa(n,str+5);　
+32.　　b1=a>>4;　　　b2=a&c;　
+33.　　j=0;j<3;j++　　　j==3　
+34.　　if (tolower(str[i])>='a' && tolower(str[i])<='z')　　　str[k]=str[i]; k++;　
+35.　　t[sl+i]=s[sl-i-1];　　　t[sl+i]='\0';　
+36.　　if(a[min]>a[j]) min=j;　　　temp=a[min]; a[min]=a[i]; a[i]=temp;　
+37.　　pst->math+pst->english+pst->computer　　　&st[i]　
+38.　　*m-=1　　　f(x,&n)　
+39.　　b=(i-a*100)/10;　　　pow(a,3)+pow(b,3)+pow(c,3)==i　
+40.　　s[i]!='\0'　　　j++;　
+41.　　for(i=0;a[i]!='\0';i++)　　　a[i]>='0' && a[i]<='9'　
+

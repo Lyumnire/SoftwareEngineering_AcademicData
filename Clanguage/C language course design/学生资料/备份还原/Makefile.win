@@ -1,0 +1,32 @@
+# Project: backuprestore
+# Makefile created by Dev-C++ 6.7.5
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = conio.o 备份还原.o
+LINKOBJ  = conio.o 备份还原.o
+LIBS     = -L"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/" -L"c:/dev-cpp/mingw32/lib/gcc/" -L"c:/dev-cpp/mingw32/mingw32/lib/" -L"c:/dev-cpp/mingw32/lib/" -L"C:/Dev-Cpp/MinGW32/lib" -L"C:/Dev-Cpp/MinGW32/mingw32/lib" -g3 -static
+INCS     = -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include" -I"c:/dev-cpp/mingw32/include" -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include-fixed"
+CXXINCS  = -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++" -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++/mingw32" -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include/c++/backward" -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include" -I"c:/dev-cpp/mingw32/include" -I"c:/dev-cpp/mingw32/lib/gcc/mingw32/9.2.0/include-fixed"
+BIN      = backuprestore.exe
+CXXFLAGS = $(CXXINCS) -Wall -Wextra -g3
+ENCODINGS = -finput-charset=utf-8 -fexec-charset=gbk
+CFLAGS   = $(INCS) -Wall -Wextra -g3
+RM       = del /q /f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "$(BIN)" $(LIBS)
+
+conio.o: conio.cpp conio.h
+	$(CPP) -c conio.cpp -o conio.o $(CXXFLAGS) 
+
+备份还原.o: 备份还原.cpp conio.h
+	$(CPP) -c 备份还原.cpp -o 备份还原.o $(CXXFLAGS) 
